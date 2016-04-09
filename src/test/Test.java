@@ -25,5 +25,13 @@ public class Test extends TestCase{
 				.num(1111).count(-2);
 		System.out.println(obj_1.toString());
 	}
+	
+	public void testNext(){
+		
+	}
+	
+	public void testNextNext(){
+		System.out.println("hello");
+	}
 
 }
