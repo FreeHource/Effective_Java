@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 import com.org.prj.cre_dsty_obj.BuilderObj;
 import com.org.prj.cre_dsty_obj.CreateObj;
+import com.org.prj.cre_dsty_obj.Noninstantiable;
 
 public class Test extends TestCase{
 	
@@ -26,8 +27,9 @@ public class Test extends TestCase{
 		System.out.println(obj_1.toString());
 	}
 	
-	public void testNext(){
-		
+	public void testNoninstantiable(){
+		String obj = Noninstantiable.toString("noninstan","object");
+		System.out.println(obj);
 	}
 	
 	public void testNextNext(){
