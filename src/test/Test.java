@@ -29,5 +29,9 @@ public class Test extends TestCase{
 	public void testNext(){
 		
 	}
+	
+	public void testNextNext(){
+		System.out.println("hello");
+	}
 
 }
