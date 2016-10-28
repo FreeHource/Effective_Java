@@ -1,5 +1,15 @@
 package test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import junit.framework.TestCase;
 
 import com.org.prj.cre_dsty_obj.BuilderObj;
@@ -34,6 +44,56 @@ public class Test extends TestCase{
 	
 	public void testNextNext(){
 		System.out.println("hello");
+	}
+	
+	public static void testFile() throws Exception{
+		InputStream ins = new FileInputStream("/Users/cmcc/Documents/Eqi_conf");
+		 File file = new File("11");
+	        OutputStream os = null;
+	        try {
+	            os = new FileOutputStream(file);
+	            int bytesRead = 0;
+	            byte[] buffer = new byte[8192];
+	            while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+	                os.write(buffer, 0, bytesRead);
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            throw new Exception("400");
+	        } finally {
+	            try {
+	                if (os != null)
+	                    os.close();
+	                if (ins != null)
+	                    ins.close();
+	            } catch (IOException e) {
+	                e.printStackTrace();
+	            }
+
+	        }
+	        System.out.println("game over:");
+	        //return file;
+	}
+	
+	
+	
+	public static void main(String[] args){
+		ExecutorService exec = Executors.newCachedThreadPool();
+		for(int i=0; i<15; i++){
+			exec.execute(new Thread(){
+				public void run(){
+					try{
+						testFile();
+						System.out.println(this.currentThread().getName());
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}finally{}
+				}
+			});
+		}
+		exec.shutdown();
+		
 	}
 
 }
